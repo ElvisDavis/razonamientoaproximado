@@ -1,0 +1,6 @@
+?(reset)
+(assert (Temperatura  (32 0) (32 1) (32 0)))
+(assert (HumedadSuelo (35 0) (35 1) (35 0)))
+(assert (HumedadAire  (85 0) (85 1) (85 0)))
+(run)
+(facts)

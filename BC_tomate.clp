@@ -1,10 +1,11 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; BC_tomato.clp - Base de Conocimientos (FuzzyCLIPS, Mamdani)
-;; Entradas: Temperatura(°C 10..45), HumedadSuelo(% 0..100), HumedadAire(% 30..100)
-;; Salidas:  Riego(0..100), Ventilacion(0..100)
+;; Dominio: Control de invernadero de tomate
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; ------------- Definición de universos y términos borrosos -------------
 (deftemplate Temperatura
-  10 45 celsius
+  10 45 ; <-- Se eliminó 'celsius' para evitar el error [PRNUTIL2]
   ((Baja  (10 1) (18 1) (22 0))
    (Media (18 0) (25 1) (32 0))
    (Alta  (28 0) (35 1) (45 1))))
@@ -108,5 +109,5 @@
   (declare (salience -6))
   ?v <- (Ventilacion ?)
   =>
-  (bind ?val (moment-defuzzify ?v))
+  (bind ?val (moment-defuzzify ?v)) ; <-- Corregido
   (printout t ">> VENTILACION recomendada (centroide): " ?val crlf))
